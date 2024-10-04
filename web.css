@@ -1,0 +1,44 @@
+body{
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+    
+}
+
+ul{
+    margin: 0;
+    width: 100px;
+    height: 50px;
+    padding-left: 0;
+    padding-top: 12.5%;
+    list-style: none;
+    text-align: center;
+    vertical-align: center;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    vertical-align: center;
+    padding-right: 5px;
+}
+
+.Jeusus{
+    background-color: rgb(150, 140, 140);
+}
+
+.signIn{
+    background-color: rgb(150, 140, 140);
+}
+
+.Support{
+    background-color: rgb(150, 140, 140);
+}
