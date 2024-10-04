@@ -7,7 +7,7 @@ nav{
     justify-content: space-between;
 }
 
-img{
+.LOGO{
     width: 100px;
     height: 100px;
     
@@ -31,14 +31,30 @@ ul{
     padding-right: 5px;
 }
 
-.Jeusus{
-    background-color: rgb(150, 140, 140);
+footer{
+    width: 100%;
+    bottom: 0;
+}
+.txtfoot{
+    margin: auto;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
 }
 
-.signIn{
-    background-color: rgb(150, 140, 140);
+.Jesusuimg{
+    border: 10px solid coral;
+    width: 250px;
+    height: 250px;
 }
 
-.Support{
-    background-color: rgb(150, 140, 140);
+.Jesususetting{
+    display: inline-flex;
+    align-items: center;
+    padding: 20px 20px;
+}
+.Jesusgrid{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
 }
