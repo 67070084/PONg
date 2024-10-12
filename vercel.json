@@ -1,5 +1,11 @@
 {
     "rewrites": [
-      { "source": "/(.*)", "destination": "/lab14.html" }
+      { "source": "/(.*)", "destination": "/" }
     ]
+}
+
+{
+  "routes": [
+    { "src": "/", "dest": "/lab14.html" }
+  ]
 }
