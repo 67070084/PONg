@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lab14.css">
+    <title>phonepage</title>
+</head>
+<body>
+    <nav style="width: 100%; text-align:center; display: flex; justify-content:center; align-items: center; height: 10vh;">
+        <div onclick="social()" class="header" style="display: flex; gap: 5px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 3vh;">
+            <div class="name" id="name">Teerat Satapornwanit 67070084</div>'s phone book
+        </div>
+    </nav>
+
+    <div class="container" style="width: 100%; text-align: center; align-items: center; justify-content: center; display: flex;">
+        <div class="profile" id="profile" style="background-image: url(https://th.bing.com/th/id/R.60cf83d3f7091f128953e6a0e0d5ed56?rik=RiAIiFQjsumA7g&riu=http%3a%2f%2fdogbreedersguide.com%2fwp-content%2fuploads%2f2015%2f03%2ffunny_pictures_of_dog_wearing_sunglasses.jpg&ehk=vR9Er5H0pLvBOAeByGffzZN%2fqAyooka6TScomDtneDE%3d&risl=&pid=ImgRaw&r=0); width: 183px; height: 183px; position: relative; background-position: center; background-size: cover; border-radius: 50%;">
+            <div class="alert" style="position: absolute; background-color: red; padding: 6px 11px; border-radius: 50%; color: white; right: 0; bottom: 0;">
+                <p>1</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-container" style="width: 100%; display: flex; flex-direction: column; padding: 2vh 0vh; gap: 30px; align-items: center; text-align: center; justify-content: center;">
+        <div class="card" style="display: flex; gap: 10px;">
+            <label for="" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >Set username</label>
+            <input type="text" placeholder="Enter" id="input" style="border: none; padding: .5vh; border-radius: .5vh; background-color: rgb(218, 218, 218);">
+            <button type="button" onclick="setUsername()">SET</button>
+        </div>
+        <div class="card" style="display: flex; gap: 10px;">
+            <label for="" >Set the link profile</label>
+            <input type="text" placeholder="Enter" id="profilelink" style="border: none; padding: .5vh; border-radius: .5vh; background-color: rgb(218, 218, 218);">
+            <button type="button" onclick="setImg()">SET</button>
+        </div>
+    </div>
+
+    <div class="phone-container" style="width: 100%; text-align: center;">
+        <div class="text-phone" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 2vh; font-weight: 700; margin-bottom: 1vh;">Phone Number List
+        </div>
+        <div class="phone-input">
+            <input type="text" placeholder="Name" id="name-phone" style="border: none; padding: .5vh; border-radius: .5vh; background-color: rgb(218, 218, 218);">
+            <input type="text" placeholder="Tel" id="phone-num" style="border: none; padding: .5vh; border-radius: .5vh; background-color: rgb(218, 218, 218);">
+            <button type="button" onclick="setElement()">ADD</button>
+            <button type="button" onclick="saveCSV()">EXPORT</button>
+        </div>
+    </div>
+
+    <div class="table-container" style="display: flex; align-items: center; text-align: center; justify-content: center; padding: 2vh; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+        <table style="border-bottom: 2px solid black;text-align: left; width: 26%;">
+            <thead>
+                <tr>
+                    <th style="background-color: rgb(179, 179, 179); border-bottom: 2px solid black;">No</th>
+                    <th style="background-color: rgb(179, 179, 179);border-bottom: 2px solid black;">Name</th>
+                    <th style="background-color: rgb(179, 179, 179); border-bottom: 2px solid black;">Phone Number </th>
+                  </tr>
+            </thead>
+            <tbody id="tdata">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const username = document.getElementById("name")
+        const inpu = document.getElementById("input")
+        const profile = document.getElementById("profile")
+        const link = document.getElementById("profilelink")
+        const namephonee = document.getElementById("name-phone")
+        const phonenum = document.getElementById("phone-num")
+        function setUsername(){
+            console.log(inpu.value);
+            username.textContent = inpu.value;
+            inpu.value = "";
+        };
+        
+        function setImg(){
+            profile.style.backgroundImage = "url(" + link.value + ")";
+            link.value = "";
+        };
+
+        function setElement(){
+            const row = document.createElement("tr")
+            const no = document.createElement("td");
+            const np = document.createElement("td");
+            const pn = document.createElement("td");
+            let text = "";
+            let body = document.getElementById("tdata");
+            let length = body.childElementCount;
+            length += 1;
+            const noTextnode = document.createTextNode(length);
+            no.appendChild(noTextnode);
+
+            const npTextnode = document.createTextNode(namephonee.value);
+            np.appendChild(npTextnode);
+            namephonee.value = ""
+            const pnTextnode = document.createTextNode(phonenum.value);
+            pn.appendChild(pnTextnode);
+            phonenum.value = ""
+
+            row.appendChild(no);
+            row.appendChild(np);
+            row.appendChild(pn);
+            
+            body.appendChild(row);
+        };
+
+        function saveCSV() {
+            const tbody = document.querySelector('tbody'); // Select the tbody element
+            const rows = tbody.querySelectorAll('tr'); // Get all rows in tbody
+
+            const phonenumber = Array.from(rows).map(row => {
+                // Assuming the phone number is in the first cell (td)
+                const cells = row.querySelectorAll('td');
+                return Array.from(cells).map(cell => cell.textContent.trim()); 
+            });
+
+            //Convert array to CSV string
+            const csvContent = phonenumber.map(row => row.join(",")).join("\n");
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "data.csv");
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        function social() {
+            document.location.href = "https://www.facebook.com/rdp.69295"
+        }
+    </script>
+</body>
+</html>
